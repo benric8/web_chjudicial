@@ -1,0 +1,145 @@
+@import '../../../../global.scss';
+/********************* STEPPER HORIZONTAL O NORMAL****************************/
+.stepper {
+    counter-reset: step;
+    /*----*/
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+    /*---------*/
+}
+.stepper li{
+    list-style-type: none;
+    float: left;
+    /* width: 33.33%; */
+    width: 100%;
+    position:relative;
+    text-align: center;
+    font-weight: 500;
+}
+.stepper li:before {
+    /* CSS for creating steper block before the li item*/
+    content:counter(step);
+    counter-increment: step;
+    height:30px;
+    width:30px;
+    line-height: 30px;
+    border: 2px solid transparent;
+    box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.1), 0px 4px 5px -2px rgba(0, 0, 0, 0.12), 0px 10px 15px -5px rgba(0, 0, 0, 0.2);
+    display:block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    background-color: white;
+}
+.stepper li:after {
+    /* CSS for creating horizontal line*/
+    content:'';
+    position: absolute;
+    width:100%;
+    height:2px;
+    background-color: #ddd;
+    top: 15px;
+    left: -50%;
+    z-index: -1;
+}
+.stepper li:first-child:after {
+    content:none;
+}
+.stepper li.active {
+    color:$color-pj-primary;
+}
+.stepper li.select:before {
+    border-color:$color-pj-primary;
+    background-color: white;
+    color: $color-pj-primary;
+}
+.stepper li.active:before {
+    border-color:$color-pj-primary;
+    background-color: $color-pj-primary;
+    color: white;
+}
+/* .stepper .active:after {
+    background-color: $color-pj-primary;
+    
+} */
+.stepper li.active + li:after{
+    background-color:$color-pj-primary;
+}
+/************************** STEEPER VERTICAL ********************************/
+.stepper-v {
+    counter-reset: step;
+}
+.stepper-v li {
+    position: relative;
+    /* tamaño de linea vertical*/
+    min-height: 0.4em;
+   /*  color: #808080; */
+    list-style-type: none;
+    font-weight: 600;
+}
+
+.stepper-v li + li{
+    /*tamaño de linea vertical*/
+    margin-top: 1.8em
+}
+
+.stepper-v li::before{
+    counter-increment: step;
+    content:counter(step);
+    /* background: #ddd; */
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
+    border-radius: 100%;
+    /* color: #fff; */
+    text-align: center;
+    border: 2px solid #ddd;
+    display: inline-block;
+    margin-right: 5px;
+}
+.stepper-v li:after {
+    content: '';
+    position: absolute;
+    /* display: block; */
+    top: 1px;
+    /* right: 50%; */
+    bottom: 1px;
+    left: 15px;
+    height: 100%;
+    width: 2px;
+    transform: scale(1, 1.5);
+    transform-origin: 50% -100%;
+    background-color: #ddd;
+    z-index: -1;
+  }
+.stepper-v li:last-child:after {
+    content:none;
+}
+.stepper-v li.active{
+    color:$color-pj-primary;
+}
+.stepper-v li.select:before{
+    border-color: $color-pj-primary;
+    background-color: white;
+    color: $color-pj-primary;
+}
+.stepper-v li.active:before{
+    border-color: $color-pj-primary;
+    background-color: $color-pj-primary;
+    color:white;
+}
+.stepper-v .active::after{
+    background-color: $color-pj-primary;
+}
+.stepper-v li div{
+    display: inline-block;/* texto de doble fila o algun objeto extra*/
+}
+.step-title{
+    font-size: 14px;
+}
+.step-description{
+    font-size: 12px;
+    color: #888888;
+}

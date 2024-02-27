@@ -1,0 +1,37 @@
+@import '../../../../../global.scss';
+.sidebar-menu ul{
+    margin: 0px;
+    padding: 0px;
+}
+.sidebar-menu{
+    padding: 0rem;
+}
+
+.sidebar-menu li{
+    padding: 0.7rem 1rem;
+    background-color: white;
+    color: #000000;
+    cursor: pointer;
+    font-size: 15px;
+}
+.sidebar-menu li:hover{
+    background-color:  $color-pj-primary;
+    color: #ffffff;
+}
+/* .sidebar-menu li:hover span{
+    display: inline-block ;
+} */
+.sidebar-menu li.selected {
+    background-color:  $color-pj-primary;
+    color: #ffffff;
+}
+.sidebar-menu span{
+    padding-left: 1rem;
+}
+.hide{
+    display: none ;
+}
+.image-logo-mobile{
+    width: 60%;
+    padding: 0.3rem 0rem;
+}

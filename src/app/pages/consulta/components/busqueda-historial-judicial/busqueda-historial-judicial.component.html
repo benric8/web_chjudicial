@@ -1,0 +1,114 @@
+<div class="grid panel-main px-2">
+    <div 
+        [ngClass]="{ hidden: btn_panel_filter }"
+        class="panel-busqueda pt-2 mb-8"
+    >
+        <div class="card shadow-6 mb-8">
+            <p-toolbar>
+                <div class="p-toolbar-group-left">
+                  <span>Opciones de búsqueda</span>
+                </div>
+        
+                <div class="p-toolbar-group-right">
+                  <button pButton pRipple
+                    icon="pi pi-angle-left"
+                    (click)="show_btn_panel()"
+                    class="btn-pj p-button-danger"
+                  ></button >
+                </div>
+            </p-toolbar>
+            <app-busqueda-hi-ju-filtros 
+                [sidebar]="false" 
+                (onConsultar) = "buscarHistorial($event)" 
+                (onChangeDni) = "changeDni($event)" 
+                [cargandoCondena] ="cargandoCondena" 
+                [cargandoPrision] = "cargandoPrision"
+                [nombreReniec] = "labelNombreReniec">
+            </app-busqueda-hi-ju-filtros>
+        </div>
+    </div>
+    <div [ngClass]="{ 'content-full': btn_panel_filter}"  class="panel-resultado">
+        <div class="col-12">
+            <div class="card-no-show" [ngClass]="{ 'card shadow-6':portada}">
+                <div class="grid" *ngIf="portada">
+                    <div class="col-12 pt-4 center">
+                        <h1 class="text-portada-title">Financiamiento Prohibido - Organizaciones Políticas</h1>
+                    </div>
+                    <div class="col-12 mb-6">
+                        <div class="imagen-portada center">
+                            <img class="image-portada" src="assets/img/filtrar-historial.svg" alt="imagen busqueda de requisitorias">
+                        </div>
+                    </div>
+                </div>
+                <div class="grid" *ngIf="error">
+                    <div class="col-12">
+                        <div class="titulo-portada center">
+                            <h1 class="center">Tenemos inconvenientes con el servicio, intentalo mas tarde</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-12">
+                    <app-busqueda-historial-detalle 
+                        [listaCondenas]= "condenas" 
+                        [listaPrisionesPreventiva] = "prisionesPreventiva" 
+                        [cargandoCondena] ="cargandoCondena" 
+                        [cargandoPrision] = "cargandoPrision" 
+                        [noPortada]="!portada">
+                    </app-busqueda-historial-detalle>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="btn-float-fixed-top-sidebar">
+    <button
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-search"
+        class="shadow-6 btn-float btn-pj"
+        (click)="display_sidebar = true"
+    ></button>
+</div>
+<div
+    [ngClass]="{ show: btn_panel_filter }"
+    class="btn-float-fixed-top-panel-filtro "
+    (click)="hide_btn_panel()"
+  >
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-search"
+      class="shadow-6 btn-float btn-pj"
+    ></button>
+</div>
+
+<p-sidebar
+  [(visible)]="display_sidebar"
+  [transitionOptions]="'200ms'"
+  [blockScroll]="true"
+  [autoZIndex]="true"
+  [style]="{'overflow-y':'auto'}"
+  styleClass="sidebar-filtro pt-3 px-3"
+  appendTo="body"
+>
+    <div class="grid">
+        <div class="col-12 center">
+            <span class="sidebar-title">Filtro de busqueda</span>
+        </div>
+    </div>
+    <app-busqueda-hi-ju-filtros 
+        [sidebar]="true" 
+        (onConsultar) = "buscarHistorial($event)" 
+        (onChangeDni) = "changeDni($event)" 
+        [cargandoCondena] ="cargandoCondena" 
+        [cargandoPrision] = "cargandoPrision"
+        [nombreReniec] = "labelNombreReniec">
+    </app-busqueda-hi-ju-filtros>
+  
+</p-sidebar>

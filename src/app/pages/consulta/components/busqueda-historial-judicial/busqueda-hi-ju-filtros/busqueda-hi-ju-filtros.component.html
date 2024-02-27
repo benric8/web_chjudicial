@@ -1,0 +1,65 @@
+<div class="panel-filtro">
+    <div class="grid ">
+        <div class="col-12 flex justify-content-start pb-0">
+            <div class="field-radiobutton">
+                <p-radioButton name="tipoConsulta" value="D" [(ngModel)]="filtroHistorial.tipoConsulta" inputId="rbDNI"></p-radioButton>
+                <label for="rbDNI">N° documento</label>
+            </div>
+           
+            <div class="field-radiobutton ml-3">
+                <p-radioButton name="tipoConsulta" value="N" [(ngModel)]="filtroHistorial.tipoConsulta" inputId="rbNombres"></p-radioButton>
+                <label for="rbNombres">Apellidos y nombres</label>
+            </div>
+        </div>
+
+        <div class="p-float-label col-12" *ngIf="filtroHistorial.tipoConsulta=='D'">
+            <p-inputMask [(ngModel)]="filtroHistorial.documento" styleClass="p-inputtext input-pj w-100 rounded-pj" mask="99999999"></p-inputMask>
+            <label for="txt-dni">N° documento</label>
+            <!--
+            <div class="p-field">
+                <label for="dni">N° documento de identidad</label>
+                <p-inputMask [(ngModel)]="filtro.dni" styleClass="input-block input-pj" mask="99999999"></p-inputMask>
+            </div>
+            -->
+        </div>
+        <div class="label-nombre mx-2" *ngIf="filtroHistorial.tipoConsulta=='D'">{{ nombreReniec }}</div>
+        <div class="p-float-label col-12" *ngIf="filtroHistorial.tipoConsulta=='N'">
+            <input type="text" id="txt-nombres" maxlength="120" [(ngModel)]="filtroHistorial.nombres" class="p-inputtext input-pj w-100 rounded-pj"pInputText > 
+            <label for="txt-nombres">Nombres</label>
+            <!--
+            <div class="p-field">
+                <label for="nombres">Nombres</label>
+                <input type="text" maxlength="120" [(ngModel)]="filtro.nombres" class="input-block input-pj"pInputText > 
+            </div>
+            -->
+        </div>
+
+        <div class="p-float-label col-12 mt-1" *ngIf="filtroHistorial.tipoConsulta=='N'">
+            <input type="text" id="txt-paterno" maxlength="80" [(ngModel)]="filtroHistorial.apellidoPaterno" class="p-inputtext input-pj w-100 rounded-pj"pInputText >
+            <label for="txt-paterno">Apellido Paterno</label>
+            <!--
+            <div class="p-field">
+                <label for="primer-apellido">Primer apellido</label>
+                <input type="text" maxlength="80" [(ngModel)]="filtro.apePaterno" class="input-block input-pj"pInputText >
+            </div>
+            -->
+        </div>
+        
+        <div class="p-float-label col-12 mt-1" *ngIf="filtroHistorial.tipoConsulta=='N'">
+            <input type="text" id="txt-materno" maxlength="80" [(ngModel)]="filtroHistorial.apellidoMaterno" class="p-inputtext input-pj w-100 rounded-pj" pInputText > 
+            <label for="txt-materno">Apellido Materno</label>
+            <!--
+            <div class="p-field">
+                <label for="segundo-apellido">Segundo apellido</label>
+                <input type="text" maxlength="80" [(ngModel)]="filtro.apeMaterno" class="input-block input-pj" pInputText > 
+            </div>
+            -->
+        </div>
+    </div>
+
+    <div class="grid mt-2">
+        <div class="col-12" align="center">
+            <button pButton pRipple type="button" label="Consultar" class="btn-pj btn-filtro rounded-pj" (click)="consultar()" icon="pi pi-search" [loading]="cargandoCondena || cargandoPrision"></button>
+        </div>
+    </div>
+</div>

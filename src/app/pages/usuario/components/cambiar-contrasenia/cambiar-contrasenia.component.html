@@ -1,0 +1,74 @@
+<div class="main-content px-2">
+    <div class="grid mt-1">
+        <div class="col-12 py-0">
+            <button pButton pRipple (click)="volver()" type="button" label="Inicio" class="btn-pj rounded-pj mt-2" icon="pi pi-home"></button>
+        </div>
+    </div>
+    <div class="grid mx-6 ">
+        <div
+        class="
+            col-12
+            sm:col-8
+            sm:col-offset-2
+            md:col-6
+            md:col-offset-3
+            lg:col-4
+            lg:col-offset-4
+            xl:col-4
+            xl:col-offset-4
+        "
+        >
+        <p-panel styleClass="shadow-6 card-cambiar p-panel-secondary" header="CAMBIAR CONTRASEÑA">
+            <div class="grid">
+            
+                <div class="p-float-label col-12 mt-2">
+                    <p-password
+                        [toggleMask]="true" [(ngModel)]="cambioClave.claveActual"
+                        [feedback]="false"
+                        name="contrasenia"
+                        class="input-block" styleClass="input-block" inputStyleClass="p-inputtext input-pj w-100 rounded-pj"></p-password>
+                    <label>Contraseña Actual</label>
+                </div>
+
+                <div class="p-float-label col-12 mt-2">
+                    
+                    <p-password
+                        [toggleMask]="true"
+                        [feedback]="true" [(ngModel)]="cambioClave.claveNueva"
+                        name="contrasenia"
+                        promptLabel="Ingrese una contraseña"
+                        weakLabel="Seguridad Debil"
+                        mediumLabel="Seguridad Media"
+                        strongLabel="Seguridad Alta"
+                        class="input-block" styleClass="input-block" inputStyleClass="p-inputtext input-pj w-100 rounded-pj"
+                    ></p-password>
+                    <label>Nueva Contraseña</label>
+                </div>
+                <div class="p-float-label col-12 mt-2">
+                    
+                    <p-password
+                        [toggleMask]="true" [(ngModel)]="cambioClave.claveConfirm"
+                        [feedback]="false"
+                        name="contrasenia"
+                        class="input-block" styleClass="input-block" inputStyleClass="p-inputtext input-pj w-100 rounded-pj"
+                    ></p-password>
+                    <label>Confirmar Nueva Contraseña</label>
+                    
+                </div>
+                <small class="form-text text-muted danger" *ngIf="cambioClave.claveNueva != cambioClave.claveConfirm">* ¡Las claves no coinciden!</small>
+                <div class="col-12 py-0" align="center">
+                    <button
+                    pButton pRipple (click)="cambiarContrasenia()"
+                    type="button"
+                    label="Cambiar Contraseña"
+                    class="btn-pj rounded-pj mt-2"
+                    icon="pi pi-check-circle"
+                    [disabled]="cambioClave.claveActual.trim() == '' || cambioClave.claveNueva.trim() == '' || cambioClave.claveConfirm.trim() == '' "
+                    ></button>
+                </div>
+            </div>
+        </p-panel>
+        </div>
+  </div>
+  
+</div>

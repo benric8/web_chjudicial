@@ -1,0 +1,138 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "probando",
+      "author": "jhon"
+    },
+    {
+      "id": 3,
+      "title": "titulo",
+      "author": "deybis"
+    },
+    {
+      "id": 4,
+      "title": "heading",
+      "author": "doe"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "solicitudes": [
+    {
+      "id": 1,
+      "numero": "14253658",
+      "tipo": "Certificado de Homonimia",
+      "solicitante": "Jorge Alezander Benitez Casadela",
+      "estado": "No observado",
+      "descarga": true,
+      "emision": "10/10/2021",
+      "caduca": "10/04/2022"
+    },
+    {
+      "id": 2,
+      "numero": "96584732",
+      "tipo": "Certificado de Antecedentes Penales",
+      "solicitante": "John Doe",
+      "estado": "No observado",
+      "descarga": true,
+      "emision": "10/10/2021",
+      "caduca": "10/04/2022"
+    },
+    {
+      "id": 3,
+      "numero": "25143696",
+      "tipo": "Certificado de redam",
+      "solicitante": "John Doe",
+      "estado": "caducado",
+      "descarga": false,
+      "emision": "10/10/2021",
+      "caduca": "10/04/2022"
+    },
+    {
+      "id": 4,
+      "numero": "45857465",
+      "tipo": "Certificado de Homonimia",
+      "solicitante": "John Doe",
+      "estado": "No observado",
+      "descarga": true,
+      "emision": "10/10/2021",
+      "caduca": "10/04/2022"
+    },
+    {
+      "id": 5,
+      "numero": "63259845",
+      "tipo": "Certificado de redam",
+      "solicitante": "John Doe",
+      "estado": "No observado",
+      "descarga": true,
+      "emision": "10/10/2021",
+      "caduca": "10/04/2022"
+    },
+    {
+      "id": 6,
+      "numero": "63259802",
+      "tipo": "Certificado de redam",
+      "solicitante": "John Doe",
+      "estado": "No observado",
+      "descarga": true,
+      "emision": "10/10/2021",
+      "caduca": "10/04/2022"
+    },
+    {
+      "id": 7,
+      "numero": "63259803",
+      "tipo": "Certificado de redam",
+      "solicitante": "John Doe",
+      "estado": "No observado",
+      "descarga": true,
+      "emision": "10/10/2021",
+      "caduca": "10/04/2022"
+    },
+    {
+      "id": 8,
+      "numero": "63259804",
+      "tipo": "Certificado de redam",
+      "solicitante": "John Doe",
+      "estado": "No observado",
+      "descarga": true,
+      "emision": "10/10/2021",
+      "caduca": "10/04/2022"
+    },
+    {
+      "id": 9,
+      "numero": "63259805",
+      "tipo": "Certificado de redam",
+      "solicitante": "John Doe",
+      "estado": "No observado",
+      "descarga": true,
+      "emision": "10/10/2021",
+      "caduca": "10/04/2022"
+    },
+    {
+      "id": 10,
+      "numero": "14253658",
+      "tipo": "Certificado de Homonimia",
+      "solicitante": "Jorge Alezander Benitez Casadela",
+      "estado": "No observado",
+      "descarga": true,
+      "emision": "10/10/2021",
+      "caduca": "10/04/2022"
+    }
+
+
+  ]
+}

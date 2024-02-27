@@ -1,0 +1,24 @@
+@import '../../../../../global.scss';
+.card{
+    padding: 5px;
+    background-color: $color-pj-bg-card;
+    border-radius: 8px;
+}
+.text-header-data{
+    color: #666666;
+    font-size: 14px;
+}
+.text-body-data{
+    color: #666666;
+    font-size: 12px;
+}
+.text-header-title{
+    color: #333333;
+    font-size: 14px;
+}
+.icon-header-title{
+    font-size: 1rem;
+}
+.text-loading{
+    color: #666666;
+}

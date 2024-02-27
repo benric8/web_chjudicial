@@ -1,0 +1,166 @@
+<div class="page-body">
+    <div class="page-header shadow-2 grid m-0">
+        <div class="toolbar col-12 m-0 p-0">
+            <div class="toolbar-content grid m-0">
+                <!--left-->
+                <div class="col-12 xl:col-6 p-0 flex justify-content-between xl:justify-content-start align-items-center">
+                    <div class="py-2">
+                        <button pButton pRipple type="button" icon="pi pi-refresh" iconPos="right" (click)="listarUsuarios()" class="btn-pj p-button-sm rounded-pj mr-2"></button>
+                        <button pButton pRipple type="button" label="Nuevo"  icon="pi pi-home" iconPos="right" (click)="nuevoUsuario()"  class="btn-pj p-button-sm rounded-pj mr-2"></button>
+                    </div>
+                </div>
+                <!--rigth-->
+                <div class="col-12 xl:col-6 p-0 flex justify-content-center xl:justify-content-end">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content">
+
+        <div class="p-grid">
+            <div class="p-col-12" style="/*overflow: scroll;*/" >
+                <p-table #dt [value]="listaUsuarios" [rows]="10" [rowsPerPageOptions]="[10,25,50]" [paginator]="true" [globalFilterFields]="['nombres','apellidoPaterno','apellidoMaterno','numeroDocumento']" responsiveLayout="scroll"
+                [rowHover]="true" dataKey="id"
+                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="flex align-items-center justify-content-between">
+                            <h5 class="m-0">Mantenimiento de Usuarios</h5>
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar en listado" />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr class="table-header-pj">
+                            <th pSortableColumn="usuario" class="table-text">Usuario <p-sortIcon field="usuario"></p-sortIcon></th>
+                            <th pSortableColumn="perfil" class="table-text">Perfil <p-sortIcon field="perfil"></p-sortIcon></th>
+                            <th pSortableColumn="nombres" class="table-text">Nombres <p-sortIcon field="nombres"></p-sortIcon></th>
+                            <th pSortableColumn="apellidoPaterno" class="table-text">Ap. Paterno <p-sortIcon field="apellidoPaterno"></p-sortIcon></th>
+                            <th pSortableColumn="apellidoMaterno" class="table-text">Ap. Materno <p-sortIcon field="apellidoMaterno"></p-sortIcon></th>
+                            <th pSortableColumn="numeroDocumento" class="table-text">Nro. Documento <p-sortIcon field="numeroDocumento"></p-sortIcon></th>
+                            <th pSortableColumn="correo" class="table-text">Correo <p-sortIcon field="correo"></p-sortIcon></th>
+                            <th pSortableColumn="activo" class="table-text">Estado <p-sortIcon field="activo"></p-sortIcon></th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-usuario>
+                        <tr class="table-row">
+                            <td class="table-text">{{usuario.usuario}}</td>
+                            <td class="table-text">{{evaluarPerfil(usuario.perfil)}}</td>
+                            <td class="table-text">{{usuario.nombres}}</td>
+                            <td class="table-text">{{usuario.apellidoPaterno}}</td>
+                            <td class="table-text">{{usuario.apellidoMaterno}}</td>
+                            <td class="table-text">{{usuario.numeroDocumento}}</td>
+                            <td class="table-text">{{usuario.correo}}</td>
+                            <td class="table-text">{{usuario.activo==="1"?"Activo":"Inactivo"}}</td>
+                            <td>
+                                <button pButton pRipple type="button" label="Ver / Editar" (click)="verEditarUsuario(usuario)" class="p-button-text mx-1 btn-pj-Outlined-detail" icon="pi pi-angle-right" iconPos="right"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="flex align-items-center justify-content-center">
+                            En total se encontraron {{listaUsuarios ? listaUsuarios.length : 0 }} usuarios.
+                        </div>
+                    </ng-template>
+                </p-table>
+
+            </div>
+        </div>
+        
+        
+        <p-dialog [(visible)]="usuarioDialog" [style]="{width: '460px'}" header="Usuario" [modal]="true" styleClass="dialog-primary" appendTo="body">
+            <ng-template pTemplate="content">
+<!--                 <div class="grid">
+                    <div class="p-float-label col-12 mt-4">
+                        <input id="txt-usuario" type="text" [(ngModel)]="usuario.usuario" class="p-inputtext-sm input-pj w-100" autocomplete="off" [disabled]="editarUsuario" pInputText> 
+                        <label for="txt-usuario">Usuario</label>
+                    </div>
+                </div>
+                
+                <div class="p-col-12">
+                    <div class="p-field">
+                      <label>Usuario</label><br/>
+                      <div class="p-inputgroup">
+                        <input id="dni-input" type="text" [disabled]="editarUsuario" [(ngModel)]="usuario.numeroDocumento" (onInput)="limpiarNombres()" class="p-inputtext-sm input-pj w-100"  autocomplete="off" mask="99999999" pInputText>
+                        <button pButton pRipple type="button" icon="pi pi-search" [disabled]="editarUsuario"  title="Validar DNI en Reniec" styleClass="btn-nuevoEntidad p-button-danger" (onClick)="validarDocumento($event)" class="btn-pj p-button-sm rounded-pj"></button>
+                      </div>
+                    </div>
+                  </div> -->
+                <div class="grid">
+                    <div class="col-12 mt-2"> 
+                        <label>Nro. Documento</label><br/>               
+                        <div class="p-inputgroup">
+                            <input type="text" pInputText [(ngModel)]="usuario.numeroDocumento" (ngModelChange)="validarNumeroDocumento($event)" (input)="limpiarNombres()" [disabled]="editarUsuario" class="p-inputtext-sm input-pj w-100" maxlength="8" >
+                            <button pButton pRipple type="button" icon="pi pi-search" [disabled]="editarUsuario"  title="Validar DNI en Reniec" styleClass="btn-nuevoEntidad p-button-danger" (click)="validarDocumento($event)" class="btn-pj p-button-sm rounded-pj"></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid">
+                    <div class="p-float-label col-12 mt-4">
+                        <input id="txt-nombres" type="text" [disabled]="true" [(ngModel)]="usuario.nombres" class="p-inputtext-sm input-pj w-100" autocomplete="off" pInputText> 
+                        <label for="txt-nombres">Nombres</label>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="p-float-label col-12 mt-4">
+                        <input id="txt-apePaterno" type="text" [disabled]="true" [(ngModel)]="usuario.apellidoPaterno" class="p-inputtext-sm input-pj w-100" autocomplete="off" pInputText> 
+                        <label for="txt-apePaterno">Apellido Paterno</label>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="p-float-label col-12 mt-4">
+                        <input id="txt-apeMaterno" type="text" [disabled]="true" [(ngModel)]="usuario.apellidoMaterno" class="p-inputtext-sm input-pj w-100" autocomplete="off" pInputText> 
+                        <label for="txt-apeMaterno">Apellido Materno</label>
+                    </div>
+                </div>                
+<!--                 <div class="grid" >
+                    <div class="p-float-label col-12 mt-4">
+                        <input id="txt-documento" type="text" [(ngModel)]="usuario.numeroDocumento" class="p-inputtext-sm input-pj w-100" autocomplete="off" pInputText> 
+                        <label for="txt-documento">Nro. Documento</label>
+                    </div>
+                </div> -->
+                <div class="grid">
+                    <div class="dropdown-float-group col-12 py-0 mt-2 pb-2">
+                        <label for="entidad" class="label-float-dropdown">Entidad</label>
+                        <p-dropdown [options]="listaEntidades" [(ngModel)]="usuario.entidad" optionLabel="nombreEntidad" optionValue="id" styleClass="input-pj w-100 dropdown-float" appendTo="body"></p-dropdown>
+                    </div>            
+                </div>
+                <div class="grid">
+                    <div class="dropdown-float-group col-12 py-0 mt-2 pb-2">
+                        <label for="entidad" class="label-float-dropdown">Perfil</label>
+                        <p-dropdown [options]="listaPerfiles" [(ngModel)]="usuario.perfil"  optionLabel="perfil" optionValue="id" styleClass="input-pj w-100 dropdown-float" appendTo="body"></p-dropdown>
+                    </div>            
+                </div>                          
+                <div class="grid" >
+                    <div class="p-float-label col-12 mt-4">
+                        <input id="txt-correo" type="text" [(ngModel)]="usuario.correo" class="p-inputtext-sm input-pj w-100" autocomplete="off" pInputText> 
+                        <label for="txt-correo">Correo</label>
+                    </div>
+                </div>                
+                <div class="grid">
+                    <div class="dropdown-float-group col-12 py-0 mt-2 pb-2">
+                        <label for="estado" class="label-float-dropdown">Estado</label>
+                        <p-dropdown [options]="estadosUsuario" [(ngModel)]="usuario.activo" optionLabel="label" optionValue="value" styleClass="input-pj w-100 dropdown-float" [disabled]="!editarUsuario" appendTo="body"></p-dropdown>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="dropdown-float-group col-12 py-0 mt-4 pb-2">
+                        <p-checkbox [(ngModel)]="resetPassword" [binary]="true" inputId="binary" [disabled]="!editarUsuario" appendTo="body"></p-checkbox>
+                        <label for="reset" class="label-float-dropdown">Resetear contraseña</label>
+                    </div>
+                </div>                
+                
+            </ng-template>
+        
+            <ng-template pTemplate="footer">
+                <button pButton pRipple type="button" label="Guardar cambios"  icon="pi pi-home" iconPos="right" (click)="guardarCambiosEventClick()"  class="btn-pj p-button-sm rounded-pj mr-2"></button>
+            </ng-template>
+
+        </p-dialog>
+
+    </div>
+</div>
+

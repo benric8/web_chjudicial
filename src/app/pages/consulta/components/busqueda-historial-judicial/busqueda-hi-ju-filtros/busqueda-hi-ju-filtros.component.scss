@@ -1,0 +1,19 @@
+@import '../../../../../global.scss';
+
+::ng-deep .input-block{
+    width: 100% !important;
+}
+.panel-filtro{
+    padding: 10px 20px;
+}
+.py-0{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.btn-filtro{
+    background-color: $color-pj-primary !important;
+}
+.label-nombre{
+    color: #666666;
+    font-style: italic;
+}

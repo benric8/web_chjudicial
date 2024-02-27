@@ -1,0 +1,26 @@
+@import '../../../../global.scss';
+.main-content {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @media (min-width: 1500px){
+    .main-content {
+        width: 1470px;
+    }
+  }
+.card-cambiar{
+    padding: 0.5rem 2.5rem;
+    background-color: #FFFFFF;
+    margin: 5px;
+    border-radius: 16px;
+
+}
+::ng-deep .input-block{
+    width: 100% !important;
+  }
+::ng-deep .p-password-panel{
+    border-radius: 8px;
+    box-shadow: 0 6px 6px -3px rgb(0 0 0 / 20%), 0 10px 14px 1px rgb(0 0 0 / 14%), 0 4px 18px 3px rgb(0 0 0 / 12%);
+}
